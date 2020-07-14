@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Desafío03
+namespace Desafio03
 {
     class Program
     {
@@ -22,8 +22,6 @@ namespace Desafío03
             double e = 180 - c1;
             double d = 180 - b - e;
             double w = z / (Math.Sin(d * Math.PI / 180));
-            double W = w * w;
-            double Z = z * z;
             double x = (Math.Sqrt((w*w) - (z*z))) - y;
 
             double x1 = Math.Round(x, 0);
