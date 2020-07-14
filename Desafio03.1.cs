@@ -17,9 +17,8 @@ namespace Desafio03
             double y = double.Parse(Console.ReadLine());
 
             //operaciones matemáticas
-            double c = Math.Atan(z / y);
-            double c1 = c * 180 / Math.PI;
-            double e = 180 - c1;
+            double c = (Math.Atan(z / y)*180/ Math.PI);
+            double e = 180 - c;
             double d = 180 - b - e;
             double w = z / (Math.Sin(d * Math.PI / 180));
             double x = (Math.Sqrt((w*w) - (z*z))) - y;
