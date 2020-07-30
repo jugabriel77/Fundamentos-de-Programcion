@@ -7,7 +7,7 @@ namespace TipoDeContrato
         static void Main(string[] args)
         {
 
-            Console.WriteLine("Ingrese su salario: ");
+            Console.Write("Ingrese su salario: ");
             double sal = double.Parse(Console.ReadLine());
             Console.WriteLine("Seleccione su tipo de contrato: 1. Dependiente 2. Independiente");
             int tipo = int.Parse(Console.ReadLine());
