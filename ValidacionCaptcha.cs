@@ -14,7 +14,8 @@ namespace ValidacionCaptcha
                 if (ronda == 3)
 
                 {
-                    Console.WriteLine("eres una maquina, fuera"); break;
+                    Console.WriteLine("Validacion incorrecta, no puede continuar.");
+                    break;
                 }
                 a = aleatorio.Next(1, 11);
                 b = aleatorio.Next(1, 11);
@@ -32,7 +33,7 @@ namespace ValidacionCaptcha
                 }
                 else
                 {
-                    Console.WriteLine("Validacion incorrecta, no puede continuar.");
+                    Console.WriteLine("Validacion incorrecta, intente otra vez.");
                     ronda += 1;
                 }
             }
