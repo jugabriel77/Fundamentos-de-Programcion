@@ -28,6 +28,7 @@ namespace ValidacionCaptcha
                 if (ans == c)
                 {
                     Console.WriteLine("Puede continuar.");
+                    break;
                 }
                 else
                 {
