@@ -26,7 +26,7 @@ namespace OrdenamientoDeDatos
             }
             for (int i = 0; i < nombres.Length; i++)
             {
-                Console.WriteLine(nombres[i] + "tiene una estatura de:" + estatura[i]);
+                Console.WriteLine(nombres[i] + " tiene una estatura de:" + estatura[i]);
             }
         }
     }
