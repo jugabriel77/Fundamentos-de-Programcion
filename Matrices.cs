@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Matrices_1_y_2
+namespace Matrices
 {
     class Program
     {
@@ -13,7 +13,7 @@ namespace Matrices_1_y_2
 
             double xs = 0;
             double os = 0;
-            double slash = 0;
+            double guion = 0;
 
             string[,] tablero = new string[n, m];
             string[,] salida = new string[n, m];
@@ -111,10 +111,10 @@ namespace Matrices_1_y_2
                 }
             }
 
-            double total = os + slash + xs;
+            double total = os + guion + xs;
             double porcentajeXs = (xs / total) * 100;
             double porcentajeOs = (os / total) * 100;
-            double porcentajeSlash = (slash / total) * 100;
+            double porcentajeGuion = (guion / total) * 100;
 
             //SALIDA
             Console.WriteLine("\nSALIDA: ");
@@ -130,7 +130,7 @@ namespace Matrices_1_y_2
 
             Console.WriteLine("Porcentaje de X:  " + porcentajeXs + "%");
             Console.WriteLine("Porcentaje de O:  " + porcentajeOs + "%");
-            Console.WriteLine("Porcentaje de -:  " + porcentajeSlash + "%");
+            Console.WriteLine("Porcentaje de -:  " + porcentajeGuion + "%");
         }
     }
 }
