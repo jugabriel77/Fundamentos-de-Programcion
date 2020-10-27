@@ -1,0 +1,179 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+class Parcial
+{
+
+    string[] names;
+    double[] data;
+
+    public Parcial(string[] _names, double[] _data)
+    {
+        data = new double[_data.Length];
+        _data.CopyTo(data, 0);
+        names = new string[_names.Length];
+        _names.CopyTo(names, 0);
+    }
+
+
+    public int PrimerPunto()
+    {
+        string[] nombres = new string[names.Length]; names.CopyTo(nombres, 0);
+        double[] notas = new double[data.Length]; data.CopyTo(notas, 0);
+
+        int salida = 0;
+        //--------------------------------------------
+        //- Abajo de esta línea va su código ---------
+        double x = 0;
+        for (int i = 0; i < notas.Length; i++)
+        {
+            x += notas[i];
+        }
+        x = x / notas.Length;
+
+        for (int i = 0; i < notas.Length; i++)
+        {
+            if (notas[i] >= (1.25 * x))
+            {
+                salida += 1;
+            }
+        }
+
+        //- Arriba de esta línea va su código --------
+        return salida;
+    }
+
+
+    public string[] SegundoPunto()
+    {
+        string[] nombres = new string[names.Length]; names.CopyTo(nombres, 0);
+        double[] notas = new double[data.Length]; data.CopyTo(notas, 0);
+
+        string[] salida = new string[3];
+        //--------------------------------------------
+        //- Abajo de esta línea va su código ---------
+
+        for (int j = 0; j < nombres.Length - 1; j++)
+        {
+            for (int i = 0; i < nombres.Length - 1; i++)
+            {
+                if (notas[i] > notas[i + 1])
+                {
+                    double tmp = notas[i + 1];
+                    notas[i + 1] = notas[i];
+                    notas[i] = tmp;
+
+                    string tmp1 = nombres[i + 1];
+                    nombres[i + 1] = nombres[i];
+                    nombres[i] = tmp1;
+                }
+            }
+        }
+
+        int index = 0;
+        for (int i = 0; i < names.Length; i++)
+        {
+            string nombreActual = nombres[i];
+            nombreActual = nombreActual.ToUpper();
+
+            char letra = nombreActual[nombreActual.Length - 1];
+
+            if (letra == 'A' || letra == 'E' || letra == 'I' || letra == 'O' || letra == 'U')
+            {
+                salida[index] = nombres[i];
+                index++;
+            }
+            if (index >= 3) break;
+        }
+
+
+        //- Arriba de esta línea va su código --------
+        return salida;
+    }
+
+
+    public List<string> TercerPuntoListas()
+    {
+        string[] nombres = new string[names.Length]; names.CopyTo(nombres, 0);
+        double[] notas = new double[data.Length]; data.CopyTo(notas, 0);
+
+        List<string> salida = new List<string>();
+        //--------------------------------------------
+        //- Abajo de esta línea va su código ---------
+
+        double x = 0;
+        for (int i = 0; i < notas.Length; i++)
+        {
+            x += notas[i];
+        }
+        x = x / notas.Length;
+
+        for (int i = 0; i < nombres.Length; i++)
+        {
+            string nombreActual = nombres[i];
+            nombreActual = nombreActual.ToUpper();
+            char letra = nombreActual[0];
+
+            if (notas[i] > x && (letra == 'A' || letra == 'E' || letra == 'I' || letra == 'O' || letra == 'U'))
+            {
+                salida.Add(nombres[i]);               
+            }
+        }
+
+
+        //- Arriba de esta línea va su código --------
+        return salida;
+    }
+
+
+    public List<string> CuartoPuntoListas()
+    {
+        string[] nombres = new string[names.Length]; names.CopyTo(nombres, 0);
+        double[] notas = new double[data.Length]; data.CopyTo(notas, 0);
+
+        List<string> salida = new List<string>();
+        //--------------------------------------------
+        //- Abajo de esta línea va su código ---------
+
+
+
+        //- Arriba de esta línea va su código --------
+        return salida;
+    }
+
+
+    public string[] TercerPunto()
+    {
+        string[] nombres = new string[names.Length]; names.CopyTo(nombres, 0);
+        double[] notas = new double[data.Length]; data.CopyTo(notas, 0);
+
+        string[] salida = new string[0];
+        //--------------------------------------------
+        //- Abajo de esta línea va su código ---------
+
+
+
+
+        //- Arriba de esta línea va su código --------
+        return salida;
+    }
+
+
+    public string[] CuartoPunto()
+    {
+        string[] nombres = new string[names.Length]; names.CopyTo(nombres, 0);
+        double[] notas = new double[data.Length]; data.CopyTo(notas, 0);
+
+        string[] salida = new string[0];
+        //--------------------------------------------
+        //- Abajo de esta línea va su código ---------
+
+
+
+        //- Arriba de esta línea va su código --------
+        return salida;
+    }
+}
+
+
