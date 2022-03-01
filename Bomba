@@ -2,3 +2,154 @@ void setup()
 {
   Serial.begin(115200);
 }
+void sendSignal() {
+  static uint32_t previousMillis = 0;
+  static const uint32_t interval = 500;
+  static bool taskInit = false;
+  static const uint8_t ledPin =  3;
+  static uint8_t ledState = LOW;
+
+  if (taskInit == false) 
+ {
+    pinMode(ledPin, OUTPUT);
+    taskInit = true;
+  }
+  
+  uint32_t currentMillis = millis();
+  
+  if ( (currentMillis - previousMillis) >= interval)
+  {
+    previousMillis = currentMillis;
+    if (ledState == LOW) {
+      ledState = HIGH;
+    } 
+    else
+    {
+      ledState = LOW;
+    }
+    
+    digitalWrite(ledPin, ledState);
+  }
+}
+
+bool ComparePasswords(char *input, char *expected)
+{
+  Serial.println("Comparando");
+  int right = 0;
+  
+  for (int i = 0; i < 6; i++)
+    {
+    if (input[i] == expected[i])
+    {
+      right++;
+    }
+ }
+  if (right == 6)
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
+}
+
+void Bomb()
+{
+
+  enum class BombState {SETUP, ACTIVATED};
+  static uint8_t counter = 20;
+  static BombState bombstate =  BombState::SETUP;
+  static uint32_t previousMillis = 0;
+  const uint32_t interval = 1000;
+  static char rightpassword[] = {'u', 'u', 'd', 'd', 'u', 'a'};
+  static char answer[6];
+  static int amountanswers = 0;
+
+
+
+  switch (bombstate)
+  {
+
+    case  BombState::SETUP:
+      {
+
+        //condicional para leer los eventos que quiera evaluar
+        //UP,DOWN,ARM
+        if (Serial.available() > 0) {
+          int dataRx = Serial.read();
+
+          if (dataRx == 'u')
+          {
+            if (counter < 60)
+            {
+              counter++;
+              Serial.println(counter);
+            }
+          }
+          else if (dataRx == 'd')
+          {
+            if (counter > 10)
+            {
+              counter--;
+              Serial.println(counter);
+            }
+          }
+          else if (dataRx == 'a')
+          {
+            bombstate = BombState::ACTIVATED;
+            previousMillis = millis();
+
+          }
+        }
+        break;
+      }
+    case BombState::ACTIVATED:
+      {
+        //Countdown
+        if (millis() - previousMillis >= interval)
+        {
+          counter --;
+          previousMillis = millis();
+          Serial.println(counter);
+
+          if (counter == 0)
+          {
+            bombstate = BombState::SETUP;
+            Serial.println("KABOOM!");
+            counter = 20;
+          }
+        }
+        //Option to defuse bomb
+        if (Serial.available() > 0) {
+
+          answer[amountanswers] = Serial.read();
+          amountanswers++;
+          Serial.println("añadiendo datos");
+
+          if (amountanswers == 6) {
+            Serial.println("6 respuestas");
+            if (ComparePasswords(rightpassword, answer))
+            {
+              Serial.println("BOMB DEFUSED!");
+              bombstate = BombState::SETUP;
+              counter = 20;
+            }
+            amountanswers = 0;
+            while (Serial.available() > 0)
+            {
+              Serial.read();
+            }
+          }
+        }
+        break;
+      }
+    default:
+      Serial.println("Error");
+      break;
+  }
+}
+void loop() {
+  Bomb();
+  sendSignal();
+}
